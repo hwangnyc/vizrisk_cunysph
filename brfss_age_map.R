@@ -23,7 +23,7 @@ df <- as.data.frame(age_state)
 
 # create map
 # modeled on code here: http://bcb.dfci.harvard.edu/~aedin/courses/R/CDC/maps.html
-
+library(maps)
 colors = c("#F1EEF6", "#D4B9DA", "#C994C7", "#DF65B0", "#DD1C77", 
            "#980043")
 
