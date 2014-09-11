@@ -1,0 +1,68 @@
+# This creates a map of the proportion of BRFSS respondents
+# who report exercise, by state
+
+# read in file and create subset
+
+# download 2012 BRFSS CSV file here:
+# http://www.hhsvizrisk.org/alldatasets-1/
+
+brf <- read.csv("BRFS2012.csv")
+dffull <- brf[c("SEQNO", "X_STSTR", "X_LLCPWT", "X_STATE", "EXERANY2", "AGE")]
+rm(brf); gc()
+
+##Sample a "small" dataset to test with
+# set.seed(1)
+# df <- dffull[sort(sample(1:nrow(dffull), size=50000)), ]
+df <- dffull
+
+# format exercise variable
+
+exerlabels <- c("Yes", "No", "Don't know", "Refused")
+df$exerany <- factor(df$EXERANY2, labels = exerlabels)
+
+# create binary yes/no exercise variable
+df$exerbin <- "No"
+df$exerbin[df$exerany == "Yes"] <- "Yes"
+df$exerbin <- as.factor(df$exerbin)
+
+## set up survey weights
+library(survey)
+
+svy.sample <- svydesign(id=~SEQNO, strata=~X_STSTR, weights=~X_LLCPWT,
+                        data=df, nest=TRUE)
+
+# create table of exercise variable by state
+
+exertable <- svyby(~exerbin, ~X_STATE, svy.sample, svytotal)
+extab <- exertable[ , 1:3]
+
+# compute variable for proportion of state residents who report exercise
+extab$prop <- extab$exerbinYes / (extab$exerbinYes + extab$exerbinNo)
+head(extab)
+
+summary(extab$prop)
+
+# load maps
+library(maps)
+
+# load FIPS data from maps to match with BRFSS FIPS column
+data(state.fips)
+
+# histogram to decide where to create categories
+hist(extab$prop)
+
+# define colors and match colors to cut points
+colors = c("white", "aquamarine", "aquamarine1", "aquamarine2", "aquamarine3", "aquamarine4")
+
+extab$colorBuckets <- as.numeric(cut(extab$prop, c(.55, .6, .65, .7, .75, .8, .85)))
+colorsmatched <- extab$colorBuckets[match(state.fips$fips, extab$X_STATE)]
+
+# create map
+
+map("state", col = colors[colorsmatched], fill = TRUE, resolution = 0, 
+    lty = 0, projection = "polyconic")
+
+title("Proportion of BRFSS 2012 Respondents Who Report Exercising")
+leg.txt <- c("Less than 70%", "70-75%", "75-80%", "More than 80%")
+legend("bottomright", leg.txt, horiz = TRUE, fill = 
+         c("aquamarine1", "aquamarine2", "aquamarine3", "aquamarine4"))
