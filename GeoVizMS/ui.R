@@ -8,7 +8,7 @@ shinyUI(fluidPage(
      sidebarPanel(
         radioButtons("year", label= h3("Choose a BRFSS Year:"), 
                          choices= list("BRFSS 2011" = 2011, "BRFSS 2013" = 2013), 
-                         selected=2011, inline=TRUE), 
+                         inline=TRUE), 
         
       helpText("Visualize metabolic syndrome by:"),
                 
