@@ -7,7 +7,7 @@ shinyServer(
                 in_tab <- subset(metsyn, YEAR==input$year & SEX %in% input$sex & AGEG %in% input$agegroup & IMPRACE %in% input$race)
                 in_tab <- droplevels(in_tab)
                 in_tab <- dcast(aggregate(STDFQ~METSD+STATE, in_tab, sum), STATE~METSD, value.var="STDFQ", na.action=na.omit)
-                in_tab <- cbind(in_tab, MS.Proportion=in_tab$Yes/(in_tab$Yes+in_tab$No) ) 
+                in_tab <- cbind(in_tab, MS.Proportion=round(in_tab$Yes/(in_tab$Yes+in_tab$No),3) ) 
                 in_tab <- cbind(in_tab, MS.Prevalence=in_tab$MS.Proportion*100)
                 in_tab <- cbind(in_tab, ABB=fips$Abb[match(in_tab$STATE, fips$FIPS)])
                 in_tab <- cbind(in_tab, SNAME=fips$STATE[match(in_tab$STATE, fips$FIPS)])
@@ -30,8 +30,9 @@ shinyServer(
                 
                 cast1 <- merge(tab_w(), fmf, by.x = "STATE", by.y = "fips")
                 colnames(cast1)[grep("capfarmkt", colnames(cast1))] <- "F.MarketsPerCap"
-                cast1 <- cbind(cast1, Population.Proportion=((cast1$popfm/sum(cast1$popfm))*100))
-
+                cast1$F.MarketsPerCap <- round(cast1$F.MarketsPerCap, 2)
+                cast1 <- cbind(cast1, Population.Proportion=round((cast1$popfm/sum(cast1$popfm))*100,2))
+                
                 return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="F.MarketsPerCap", sizevar="Population.Proportion",
                                         options=list(legend="none", sizeAxis="{minValue:0, maxSize:10}", 
                                                      colorAxis="{colors:['#EFF3FF', '#BDD7E7', '#6BAED6', '#3182BD', '#08519C']}",
@@ -46,7 +47,8 @@ shinyServer(
                 
                 cast1 <- merge(tab_w(), fmf, by.x = "STATE", by.y = "fips")
                 colnames(cast1)[grep("capfstfd", colnames(cast1))] <- "FastFoodPerCap"
-                cast1 <- cbind(cast1, Population.Proportion=((cast1$popff/sum(cast1$popff))*100))
+                cast1$FastFoodPerCap <- round(cast1$FastFoodPerCap, 2)
+                cast1 <- cbind(cast1, Population.Proportion=round((cast1$popff/sum(cast1$popff))*100,2))
                 
                 return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="FastFoodPerCap", sizevar="Population.Proportion",
                                        options=list(legend="none", sizeAxis="{minValue:0, maxSize:10}", 

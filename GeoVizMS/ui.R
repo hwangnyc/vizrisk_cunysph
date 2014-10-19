@@ -43,7 +43,7 @@ shinyUI(fluidPage(
                 of farmers' markets and fast food by state."),
              div(style="display:inline-block", htmlOutput(outputId="farmers")),
              div(style="display:inline-block", htmlOutput(outputId="fastfood")),
-             helpText("*Data available only for 43 states. Darker shades indicate increased population proportions.")
+             helpText("*Data available only for 43 states. Darker shades indicate greater state population proportions.")
              )
               )
 ))
