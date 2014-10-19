@@ -13,7 +13,7 @@ shinyUI(fluidPage(
      sidebarPanel(
              helpText(h3("Data Selection")),
         radioButtons("year", label= h4("Choose a BRFSS Year:"), 
-                         choices= list("BRFSS 2011" = 2011, "BRFSS 2013" = 2013), 
+                         choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011), 
                          inline=TRUE), 
         
       helpText("Visualize metabolic syndrome by:"),
@@ -36,14 +36,14 @@ shinyUI(fluidPage(
     mainPanel(
              htmlOutput(outputId="geomap"),
              helpText("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25, 
-               having been told by a primary care provider that you have high cholesterol, diabetes, or high blood pressure/hypertension"),
+               having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
              br(),
-             helpText("It is known that metabolic syndrome can be associated with certain dietary and lifestyle choices. 
-               The below scatterplots illustrate the relationship between prevalence of metabolic syndrome and availability
-                of farmers' markets and fast food, respectively, by state."),
+             helpText("Metabolic syndrome may be associated with certain dietary and lifestyle choices. 
+               The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
+                of farmers' markets and fast food by state."),
              div(style="display:inline-block", htmlOutput(outputId="farmers")),
              div(style="display:inline-block", htmlOutput(outputId="fastfood")),
-             helpText("*Data available only for 43 states")
+             helpText("*Data available only for 43 states. Darker shades indicate increased population proportions.")
              )
               )
 ))
