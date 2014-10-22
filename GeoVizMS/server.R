@@ -19,10 +19,10 @@ shinyServer(
         output$geomap <- renderGvis({
                 cast1 <- tab_w()
                 return(gvisGeoChart(cast1, colorvar="MS.Prevalence", locationvar="REGION", hovervar="FULLSN",
-                        options=list(region="US", dataMode="region", resolution="provinces", backgroundColor="lightblue",
+                        options=list(region="US", dataMode="region", resolution="provinces", backgroundColor="white",
                         colorAxis="{values:[0,5,10,15,22,32,46,68,100], 
                         colors:['#F7FCF5','#E5F5E0','#C7E9C0','#A1D99B','#74C476','#41AB5D','#238B45','#006D2C','#00441B']}", 
-                        datalessRegionColor="lightgrey"))
+                        datalessRegionColor="lightgrey", width=600, height=400))
                        )
                 })
 
@@ -33,8 +33,12 @@ shinyServer(
                 cast1$F.MarketsPerCap <- round(cast1$F.MarketsPerCap, 2)
                 cast1 <- cbind(cast1, Population.Proportion=round((cast1$popfm/sum(cast1$popfm))*100,2))
                 
-                return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="F.MarketsPerCap", sizevar="Population.Proportion",
-                                        options=list(legend="none", sizeAxis="{minValue:0, maxSize:10}", 
+                return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="F.MarketsPerCap", 
+                                       sizevar="Population.Proportion",
+                                        options=list(legend="none", 
+                                                     width = 1000,
+                                                     height = 400,
+                                                     sizeAxis="{minValue:0, maxSize:10}", 
                                                      colorAxis="{colors:['#EFF3FF', '#BDD7E7', '#6BAED6', '#3182BD', '#08519C']}",
                                                      title="Farmers' Markets Per Capita*",
                                                      vAxis ="{title:'Markets Per 100,000 State Residents', 
@@ -51,7 +55,10 @@ shinyServer(
                 cast1 <- cbind(cast1, Population.Proportion=round((cast1$popff/sum(cast1$popff))*100,2))
                 
                 return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="FastFoodPerCap", sizevar="Population.Proportion",
-                                       options=list(legend="none", sizeAxis="{minValue:0, maxSize:10}", 
+                                       options=list(legend="none", 
+                                                    width = 1000,
+                                                    height = 400,
+                                                    sizeAxis="{minValue:0, maxSize:10}", 
                                                     colorAxis="{colors:['#FEE5D9', '#FCAE91', '#FB6A4A' ,'#DE2D26', '#A50F15']}",
                                                     title="Fast Food Per Capita*",
                                                     vAxis ="{title:'Fast Food Restaurants per 100,000 State Residents', 
