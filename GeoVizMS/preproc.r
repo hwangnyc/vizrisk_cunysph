@@ -8,6 +8,12 @@ load("data/fipscd.rda")
 #Removing US territories
 fips <- fips[!fips$FIPS>56,]
 
+#Adding State Names
+metsyn[, ABB:=fips$Abb[match(metsyn$STATE, fips$FIPS)]]
+metsyn[, SNAME:=fips$STATE[match(metsyn$STATE, fips$FIPS)]]
+metsyn[, REGION:=fips$region[match(metsyn$STATE, fips$FIPS)]]
+
+
 #Loading Census Population Proportions Data
 ASprops <- read.csv("data/Census2010prop.csv", header=TRUE, colClasses=c("factor", "integer", "numeric"))
 
