@@ -17,7 +17,7 @@ fluidRow(
         column(2,
                 wellPanel(
                 h3("Data Selection"),
-        radioButtons("year", label= h5("Choose a BRFSS Year:"), 
+        radioButtons("year", label= HTML(paste("Choose a BRFSS",tags$sup("1,2"), "Year:", sep=" ")), 
                          choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011), 
                          inline=TRUE), 
         
@@ -42,16 +42,15 @@ fluidRow(
       column(6,
         h4("Metabolic Syndrome Prevalence Proportion by State"),
         htmlOutput(outputId="geotab"),
-        br(),
         helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census. 
                  Darker colors indicate a higher prevalence of metabolic syndrome."),
         p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25, 
         having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
-        br(),
-        h4("Contributing Factor: Availability of Health Food"),
+        hr(),
+        h4(HTML(paste("Contributing Factors: Availability of Health Food and Fast Food",tags$sup("3,4"), sep=" "))),
         p("Metabolic syndrome may be associated with certain dietary and lifestyle choices. 
         The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
-        of farmers' markets and fast food by state."),
+        of farmers' markets and fast food by state and region."),
         br(),
              htmlOutput(outputId="farmers"),
              htmlOutput(outputId="fastfood"),
