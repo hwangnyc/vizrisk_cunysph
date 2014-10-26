@@ -1,19 +1,24 @@
 ##ui.R
 library(shiny)
+library(data.table)
+library(reshape2)
+library(ggplot2)
+library(gridExtra)
+suppressPackageStartupMessages(library(googleVis))
+source("preproc.r")
 
-shinyUI(fluidPage(
-        h2("Metabolic Syndrome: Where Does Your State Stand?"),
-  helpText("Metabolic syndrome refers to a group of risk factors that
-              can increase a person's risk for heart disease and
-           other health problems.", br(), 
-           "This interactive tool helps you visualize the distribution
-           of the prevalence proportion of metabolic syndrome across the U.S. population." ),
-  
-  sidebarLayout(
-     sidebarPanel(
-             helpText(h3("Data Selection")),
-        radioButtons("year", label= h6("Choose a BRFSS Year"), 
-                         choices= list("2013" = 2013, "2011" = 2011), 
+shinyUI(
+ fluidPage(
+    fluidRow(column(8, titlePanel("Metabolic Syndrome: Where Does Your State Stand?")),
+              column(4, img(src="cunylogo.png", align="right", height=72, style="margin-left:10px"),
+                     img(src="hunterlogo.png", align="right", height=72, style="margin-left:10px"))),
+
+fluidRow(
+        column(2,
+                wellPanel(
+                h3("Data Selection"),
+        radioButtons("year", label= h5("Choose a BRFSS Year:"), 
+                         choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011), 
                          inline=TRUE), 
         
       helpText(h6("Visualize metabolic syndrome by:")),
@@ -31,28 +36,37 @@ shinyUI(fluidPage(
       checkboxGroupInput("race",
                   label = "Racial/Ethnic Group",
                   choices = c("NH White", "NH Black", "NH Asian", "NH Native American/Alaskan Native"="NH NA/AN", "Hispanic", "Other"),
-                  selected = c("NH White", "NH Black", "NH Asian", "NH NA/AN", "Hispanic", "Other")) ),
+                  selected = c("NH White", "NH Black", "NH Asian", "NH NA/AN", "Hispanic", "Other")) 
+                )),
      
-    mainPanel(
-             h4("Map of Metabolic Syndrome Prevalence by State"),
-             htmlOutput(outputId="geomap"),
-             br(),
-             helpText("Data is presented in age-adjusted percentages. Darker colors indicate a 
-                      higher prevalence of metabolic syndrome."),
-             helpText("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25, 
-               having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
-             br()
-    )),
-  
-    mainPanel(
-             h4("Contributing Factor: Availability of Healthy Food"),
-             helpText("Metabolic syndrome may be associated with certain dietary and lifestyle choices. 
-               The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
-                of farmers' markets and fast food by state."),
-             br(),
-             div(style="display:inline", htmlOutput(outputId="farmers")),
-             div(style="display:inline", htmlOutput(outputId="fastfood")),
-             width=12
+      column(6,
+        h4("Metabolic Syndrome Prevalence Proportion by State"),
+        htmlOutput(outputId="geotab"),
+        br(),
+        helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census. 
+                 Darker colors indicate a higher prevalence of metabolic syndrome."),
+        p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25, 
+        having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
+        br(),
+        h4("Contributing Factor: Availability of Health Food"),
+        p("Metabolic syndrome may be associated with certain dietary and lifestyle choices. 
+        The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
+        of farmers' markets and fast food by state."),
+        br(),
+             htmlOutput(outputId="farmers"),
+             htmlOutput(outputId="fastfood"),
+             helpText("*Data available only for 43 states.")
+        ),
+      column(1, br(),img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px")),
+    
+      column(3, br(),
+           wellPanel(
+                   selectInput("state", label=h3("State Viewer"), 
+                         choices= unique(metsyn$SNAME)),
+                   plotOutput(outputId="stateview")
+                )
+             )
     )
-))
- 
+  ) 
+)
+
