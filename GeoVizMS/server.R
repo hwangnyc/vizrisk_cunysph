@@ -25,8 +25,8 @@ shinyServer(
                                 displayMode="regions", 
                                 resolution="provinces", 
                                 backgroundColor="lightblue",
-                                width=960,
-                                height=640,
+                                keepAspectRation = TRUE,
+                                width = "100%",
                                 colorAxis="{values:[0,1,5,10,15,22,32,46,68,100], 
                                 colors:['#FFF5EE', '#E1FCDE', '#C7E9C0', '#A1D99B', '#74C476', '#41AB5D', '#238B45', '#006D2C', '#1B5833' ,'#00441B']}", 
                                 datalessRegionColor="lightgrey") ) 
