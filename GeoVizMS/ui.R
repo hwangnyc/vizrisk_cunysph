@@ -1,12 +1,18 @@
 ##ui.R
 library(shiny)
+library(data.table)
+library(reshape2)
+library(ggplot2)
+library(gridExtra)
+suppressPackageStartupMessages(library(googleVis))
+source("preproc.r")
 
 shinyUI(
  fluidPage(
-    fluidRow(column(6, titlePanel("Metabolic Syndrome: Where Does Your State Stand?")),
-              column(2, img(src="HunterLogo.png", align="right", height=72, style="margin-left:10px"), 
-                         img(src="cunylogo.png", align="right", height=72, style="margin-left:10px"))),
-        
+    fluidRow(column(8, titlePanel("Metabolic Syndrome: Where Does Your State Stand?")),
+              column(4, img(src="cunylogo.png", align="right", height=72, style="margin-left:10px"),
+                     img(src="hunterlogo.png", align="right", height=72, style="margin-left:10px"))),
+
 fluidRow(
         column(2,
                 wellPanel(
@@ -33,11 +39,12 @@ fluidRow(
                   selected = c("NH White", "NH Black", "NH Asian", "NH NA/AN", "Hispanic", "Other")) 
                 )),
      
-      column(8,
-        h4("Map of Metabolic Syndrome Prevalence by State"),
+      column(6,
+        h4("Metabolic Syndrome Prevalence Proportion by State"),
         htmlOutput(outputId="geotab"),
         br(),
-        helpText("Data is presented in age-adjusted percentages. Darker colors indicate a higher prevalence of metabolic syndrome."),
+        helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census. 
+                 Darker colors indicate a higher prevalence of metabolic syndrome."),
         p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25, 
         having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
         br(),
@@ -48,13 +55,15 @@ fluidRow(
         br(),
              htmlOutput(outputId="farmers"),
              htmlOutput(outputId="fastfood"),
-             helpText("*Data available only for 43 states. Darker shades indicate greater state population proportions.")
+             helpText("*Data available only for 43 states.")
         ),
+      column(1, br(),img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px")),
     
-      column(2, 
+      column(3, br(),
            wellPanel(
-                   selectInput("state", label=h5("Select a state"), 
-                               choices= unique(metsyn$SNAME))
+                   selectInput("state", label=h3("State Viewer"), 
+                         choices= unique(metsyn$SNAME)),
+                   plotOutput(outputId="stateview")
                 )
              )
     )
