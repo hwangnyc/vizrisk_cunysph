@@ -11,19 +11,20 @@ tabPanelAbout <- source("about.r")$value
 
 shinyUI(
  fluidPage(
-    fluidRow(column(8, titlePanel("Metabolic Syndrome: Where Does Your State Stand?")),
+    fluidRow(
+         column(8, titlePanel("Metabolic Syndrome: Where Does Your State Stand?")),
               column(4, img(src="cunylogo.png", align="right", height=72, style="margin-left:10px"),
-                     img(src="hunterlogo.png", align="right", height=72, style="margin-left:10px"))),
+                     img(src="hunterlogo.png", align="right", height=72, style="margin-left:10px"))
+             ),
 
-fluidRow(
+    fluidRow(
         column(2,
                 wellPanel(
                 h3("Data Selection"),
         radioButtons("year", label= HTML(paste("Choose a BRFSS",tags$sup("1,2"), "Year:", sep=" ")), 
                          choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011), 
                          inline=TRUE), 
-        
-      helpText(h6("Visualize metabolic syndrome by:")),
+        helpText(h6("Visualize metabolic syndrome by:")),
                 
       checkboxGroupInput("sex", 
                   label = "Sex",
@@ -59,10 +60,11 @@ fluidRow(
                                 htmlOutput(outputId="farmers"),
                                 htmlOutput(outputId="fastfood"),
                                 helpText("*Data available only for 43 states."),
-                                column(1, br(),img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px"))), 
-                tabPanelAbout()
-                        )
-               ),
+                                column(1, br(),img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px")),
+                                value="geoviz"), 
+                tabPanelAbout(),
+                        id="tsp")
+              ),
      column(3, br(),
            wellPanel(
                    selectInput("state", label=h3("State Viewer"), 
