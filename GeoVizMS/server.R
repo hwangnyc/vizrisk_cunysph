@@ -43,8 +43,8 @@ shinyServer(
       
       return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="MarketsPerCap", 
                              sizevar="Population.Proportion",colorvar="SubRegion",
-                             options=list(width="100%",
-                                          height="100%",
+                             options=list(width=800,
+                                          height=400,
                                           chartArea="{left:35,top:35,width:'75%',height:'80%'}",
                                           title="Farmers' Markets Per Capita*", 
                                           titleTextStyle="{fontSize:18}",
@@ -63,8 +63,8 @@ shinyServer(
       
       return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="FastFoodPerCap", 
                              sizevar="Population.Proportion",colorvar="SubRegion",
-                             options=list(width="100%",
-                                          height="100%",
+                             options=list(width=800,
+                                          height=400,
                                           chartArea="{left:35,top:35,width:'75%',height:'80%'}",
                                           title="Fast Food Per Capita*",
                                           titleTextStyle="{fontSize:18}",
