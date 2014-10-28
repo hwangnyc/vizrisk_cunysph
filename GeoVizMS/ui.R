@@ -22,8 +22,8 @@ shinyUI(
              wellPanel(
                h3("Data Selection"),
                radioButtons("year", label= HTML(paste("Choose a BRFSS",tags$sup("1,2"), "Year:", sep=" ")), 
-                            choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011), 
-                            inline=TRUE), 
+                            choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011),
+               ), 
                helpText(h6("Visualize metabolic syndrome by:")),
                
                checkboxGroupInput("sex", 
