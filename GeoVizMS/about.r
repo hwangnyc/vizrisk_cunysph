@@ -4,7 +4,7 @@ function(){
                      <iframe width="560" height="315" src="//www.youtube.com/embed/uHYcDQDbMY8" frameborder="0" allowfullscreen></iframe> 
                       </div>'),
                  h4("About Us"),
-                 p("Insert Text Here"),
+                 p("This is the shiny risk visualization web application proudly developed by Professor Levi Waldron, Jasmine Abdelnabi, Marcel Ramos, Finn Schubert, Katarzyna Wyka, Henry Wang, and Cody Boppert."),
                  hr(),
                  h4("Methods"),
                  p("Data were obtained from the Behavioral Risk Factor Surveillance System (BRFSS) survey for the years 2011 and 2013. 
