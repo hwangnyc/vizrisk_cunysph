@@ -37,11 +37,11 @@ shinyServer(
     output$farmers <- renderGvis({
       
       cast1 <- merge(tab_w(), fmf, by.x = "STATE", by.y = "fips")
-      colnames(cast1)[grep("capfarmkt", colnames(cast1))] <- "MarketsPerCap"
-      cast1$MarketsPerCap <- round(cast1$MarketsPerCap, 2)
+      colnames(cast1)[grep("capfarmkt", colnames(cast1))] <- "MarketsPerPop"
+      cast1$MarketsPerPop <- round(cast1$MarketsPerPop, 2)
       cast1 <- cbind(cast1, Population.Proportion=round((cast1$popfm/sum(cast1$popfm))*100,2))
       
-      return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="MarketsPerCap", 
+      return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="MarketsPerPop", 
                              sizevar="Population.Proportion",colorvar="SubRegion",
                              options=list(width=800,
                                           height=400,
@@ -57,11 +57,11 @@ shinyServer(
     output$fastfood <- renderGvis({
       
       cast1 <- merge(tab_w(), fmf, by.x = "STATE", by.y = "fips")
-      colnames(cast1)[grep("capfstfd", colnames(cast1))] <- "FastFoodPerCap"
-      cast1$FastFoodPerCap <- round(cast1$FastFoodPerCap, 2)
+      colnames(cast1)[grep("capfstfd", colnames(cast1))] <- "FastFoodPerPop"
+      cast1$FastFoodPerPop <- round(cast1$FastFoodPerPop, 2)
       cast1 <- cbind(cast1, Population.Proportion=round((cast1$popff/sum(cast1$popff))*100,2))
       
-      return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="FastFoodPerCap", 
+      return(gvisBubbleChart(cast1, idvar="ABB", xvar="MS.Proportion", yvar="FastFoodPerPop", 
                              sizevar="Population.Proportion",colorvar="SubRegion",
                              options=list(width=800,
                                           height=400,
@@ -97,15 +97,15 @@ shinyServer(
     output$stateview <- renderPlot({
       
       a <- ggplot(side_tab(), aes(x=AGEG, y=Prop, fill=IMPRACE)) + geom_bar(stat="Identity") + 
-        scale_fill_brewer(type="qual", palette="Accent", guide=guide_legend(nrow=3, title=NULL))
-      k <- a + ylab("Prevalence Proportion") + labs(fill="Racial/Ethnic \n Group") + 
-        theme(axis.title.x = element_blank(),legend.position="bottom", text=element_text(size=11, family="sans"))
+        scale_fill_brewer(type="qual", palette="Accent", guide=guide_legend(nrow=1, title=NULL))
+      k <- a + ylab("Prevalence Proportion (%)") + xlab("Age Group") + labs(fill="Racial/Ethnic \n Group") + 
+        theme(legend.position="bottom", text=element_text(size=11, family="sans"))
               
       b <- ggplot(side_tab2(), aes(x=AGEG, y=Prop, fill=SEX)) + geom_bar(stat="identity") + 
         scale_fill_manual(values=c("#B3CDE3","#FBB4AE"), guide=guide_legend(title=NULL))
-      j <- b + ylab("Prevalence Proportion") + xlab("Age Group") + labs(fill="Gender") + 
+      j <- b + ylab("Prevalence Proportion (%)") + xlab("Age Group") + labs(fill="Gender") + 
         theme(legend.position="bottom", text=element_text(size=11,family="sans"))
-      grid.arrange(k,j, ncol=1)
+      grid.arrange(k,j, ncol=2)
       
     })
   }) #shinysever

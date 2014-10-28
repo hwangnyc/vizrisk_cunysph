@@ -10,8 +10,16 @@ window.onload = function() {
       window.location.href = window.location.href;
    });
 
-   var geoChart = document.getElementById("geotab").children;
-   console.log(geoChart);
+   var legend = $("img.legend");
+   $("ul.nav-tabs").click(function() {
+      console.log($(this).find("li.active > a").attr('data-value'));
+      if ($(this).find("li.active > a").attr("data-value") !== "about") {
+         $(legend).hide();
+      } else {
+         $(legend).show();
+      }
+   });
+
 }
 
 
