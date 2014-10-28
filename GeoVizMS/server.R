@@ -48,7 +48,7 @@ shinyServer(
                                           chartArea="{left:35,top:35,width:'75%',height:'80%'}",
                                           title="Farmers' Markets Per Capita*", 
                                           titleTextStyle="{fontSize:18}",
-                                          vAxis ="{title:'Markets Per 100,000 State Residents', 
+                                          vAxis ="{title:'Markets per 100,000 population', 
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}",
                                           hAxis="{title:'Proportion of State Residents with Met. Synd.',
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}"   )))
@@ -68,7 +68,7 @@ shinyServer(
                                           chartArea="{left:35,top:35,width:'75%',height:'80%'}",
                                           title="Fast Food Per Capita*",
                                           titleTextStyle="{fontSize:18}",
-                                          vAxis ="{title:'Fast Food Restaurants per 100,000 State Residents', 
+                                          vAxis ="{title:'Fast Food Restaurants per 100,000 population', 
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}",
                                           hAxis="{title:'Proportion of State Residents with Met. Synd.',
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}"   )))
@@ -97,15 +97,15 @@ shinyServer(
     output$stateview <- renderPlot({
       
       a <- ggplot(side_tab(), aes(x=AGEG, y=Prop, fill=IMPRACE)) + geom_bar(stat="Identity") + 
-        scale_fill_brewer(type="qual", palette="Accent", guide=guide_legend(nrow=3, title=NULL))
-      k <- a + ylab("Prevalence Proportion") + labs(fill="Racial/Ethnic \n Group") + 
-        theme(axis.title.x = element_blank(),legend.position="bottom", text=element_text(size=11, family="sans"))
+        scale_fill_brewer(type="qual", palette="Accent", guide=guide_legend(nrow=1, title=NULL))
+      k <- a + ylab("Prevalence Proportion (%)") + xlab("Age Group") + labs(fill="Racial/Ethnic \n Group") + 
+        theme(legend.position="bottom", text=element_text(size=11, family="sans"))
               
       b <- ggplot(side_tab2(), aes(x=AGEG, y=Prop, fill=SEX)) + geom_bar(stat="identity") + 
         scale_fill_manual(values=c("#B3CDE3","#FBB4AE"), guide=guide_legend(title=NULL))
-      j <- b + ylab("Prevalence Proportion") + xlab("Age Group") + labs(fill="Gender") + 
+      j <- b + ylab("Prevalence Proportion (%)") + xlab("Age Group") + labs(fill="Gender") + 
         theme(legend.position="bottom", text=element_text(size=11,family="sans"))
-      grid.arrange(k,j, ncol=1)
+      grid.arrange(k,j, ncol=2)
       
     })
   }) #shinysever

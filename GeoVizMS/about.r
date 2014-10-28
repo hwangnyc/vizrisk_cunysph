@@ -1,10 +1,10 @@
 function(){
         tabPanel("About",
                  HTML('<div style="float: right; margin: 5px 5px 5px 10px;"> 
-                     <iframe width="560" height="315" src="//www.youtube.com/embed/uHYcDQDbMY8" frameborder="0" allowfullscreen></iframe> 
+                     <iframe width="560" height="315" src="//www.youtube.com/embed/3GU2snRJhfE" frameborder="0" allowfullscreen></iframe> 
                       </div>'),
                  h4("About Us"),
-                 p("This a risk visualization web application developed using the 'shiny' package in R version 3.1.1. It was proudly developed by Dr. Levi Waldron, Jasmine Abdelnabi, Marcel Ramos, Finn Schubert, Henry Wang, Cody Boppert, Dr. Katarzyna Wyka, and Dr. Ashish Joshi."),
+                 p("This a risk visualization web application developed using the 'shiny' package in R version 3.1.1. It was proudly developed by Dr. Levi Waldron, Jasmine Abdelnabi, Marcel Ramos, Finn Schubert, Henry Wang, Cody Boppert, Kezhen Fei, Dr. Katarzyna Wyka, and Dr. Ashish Joshi."),
                  hr(),
                  h4("Methods"),
                  p("Data were obtained from the Behavioral Risk Factor Surveillance System (BRFSS) survey for the years 2011 and 2013. 
@@ -15,9 +15,9 @@ function(){
                  h4("Data Sources"),
                  p("1) Centers for Disease Control and Prevention (CDC). ", a("Behavioral Risk Factor Surveillance System Survey Data.", href="http://www.cdc.gov/brfss/"), 
                 "Atlanta, Georgia: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, [2011, 2013]"),
-                 p("2) Ian Spiro, Phil Dhingra. ", a("Fast Food Locations Geographic Distribution Project.", href="http://www.fastfoodmaps.com/"), "[2007]"),
-                 p("3) Department of Agriculture, Agricultural Marketing Service. ", a("USDA Farmer Market Geographic Data.", href="http://www.ams.usda.gov/farmersmarkets")),
-                 p("4) U.S. Census Bureau, ", a("2010 Population Census.",  href="http://www.census.gov/2010census/")),
+                 p("2) U.S. Census Bureau, ", a("2010 Population Census.",  href="http://www.census.gov/2010census/")), 
+                 p("3) Ian Spiro, Phil Dhingra. ", a("Fast Food Locations Geographic Distribution Project.", href="http://www.fastfoodmaps.com/"), "[2007]"),
+                 p("4) Department of Agriculture, Agricultural Marketing Service. ", a("USDA Farmer Market Geographic Data.", href="http://www.ams.usda.gov/farmersmarkets")),
                     
          value="about"
                  )
