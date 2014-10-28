@@ -26,7 +26,7 @@ shinyServer(
                                 resolution="provinces", 
                                 backgroundColor="lightblue",
                                 keepAspectRatio = TRUE,
-                                width = "100%", height="100%",
+                                width = "85%", height="100%",
                                 colorAxis="{values:[0,1,5,10,15,22,32,46,68,100], 
                                 colors:['#FFF5EE', '#E1FCDE', '#C7E9C0', '#A1D99B', '#74C476', '#41AB5D', '#238B45', '#006D2C', '#1B5833' ,'#00441B']}", 
                                 datalessRegionColor="lightgrey") ) 
@@ -103,4 +103,4 @@ shinyServer(
               grid.arrange(k,j, ncol=1)
               
         })
-})
+}) #shinysever

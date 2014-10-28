@@ -18,7 +18,7 @@ shinyUI(
              ),
 
     fluidRow(
-        column(2,
+        column(2, 
                 wellPanel(
                 h3("Data Selection"),
         radioButtons("year", label= HTML(paste("Choose a BRFSS",tags$sup("1,2"), "Year:", sep=" ")), 
@@ -40,38 +40,39 @@ shinyUI(
                   label = "Racial/Ethnic Group",
                   choices = c("NH White", "NH Black", "NH Asian", "NH Native American/Alaskan Native"="NH NA/AN", "Hispanic", "Other"),
                   selected = c("NH White", "NH Black", "NH Asian", "NH NA/AN", "Hispanic", "Other")) 
-                        ),
-                ),
-        column(6,
-                tabsetPanel(
-                        tabPanel(title="Metabolic Syndrome Map", 
-                                h4("Metabolic Syndrome Prevalence Proportion by State"),
-                                htmlOutput(outputId="geotab"),
-                                helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census. 
-                                 Darker colors indicate a higher prevalence of metabolic syndrome."),
-                                p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25, 
-                                having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
-                                hr(),
-                                h4(HTML(paste("Contributing Factors: Availability of Health Food and Fast Food",tags$sup("3,4"), sep=" "))),
-                                p("Metabolic syndrome may be associated with certain dietary and lifestyle choices. 
-                                The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
-                                of farmers' markets and fast food by state and region."),
-                                br(),
-                                htmlOutput(outputId="farmers"),
-                                htmlOutput(outputId="fastfood"),
-                                helpText("*Data available only for 43 states."),
-                                column(1, br(),img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px")),
-                                value="geoviz"), 
-                tabPanelAbout(),
-                        id="tsp")
-              ),
-     column(3, br(),
+                        )),
+      column(7,
+             tabsetPanel(
+                     tabPanel(title="Metabolic Syndrome Map",
+                              h4("Metabolic Syndrome Prevalence Proportion by State"),
+                              htmlOutput(outputId="geotab", inline=TRUE),
+                              helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census.
+Darker colors indicate a higher prevalence of metabolic syndrome."),
+                              p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25,
+having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
+                              hr(),
+                              h4(HTML(paste("Contributing Factors: Availability of Health Food and Fast Food",tags$sup("3,4"), sep=" "))),
+                              p("Metabolic syndrome may be associated with certain dietary and lifestyle choices.
+The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
+of farmers' markets and fast food by state and region."),
+                              br(),
+                              htmlOutput(outputId="farmers"),
+                              htmlOutput(outputId="fastfood"),
+                              helpText("*Data available only for 43 states."),
+                              column(1, br(),img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px")),
+                              value="geoviz"),
+                     tabPanelAbout(),
+                     id="tsp")
+      ),
+             
+                              
+        column(3, br(),
            wellPanel(
                    selectInput("state", label=h3("State Viewer"), 
                          choices= unique(metsyn$SNAME)),
                    plotOutput(outputId="stateview")
                     )
-            )
-     )
-   )
-)
+              )
+     ) #fluidRow
+   ) #fluidPage
+) #shinyUI
