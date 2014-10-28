@@ -45,7 +45,8 @@ shinyUI(
              tabsetPanel(
                      tabPanel(title="Metabolic Syndrome Map",
                               h4("Metabolic Syndrome Prevalence Proportion by State"),
-                              htmlOutput(outputId="geotab", inline=TRUE),
+                              div(style={'display:inline-block'}, htmlOutput(outputId="geotab", inline=TRUE)),
+                              div(style={'display:inline-block'}, img(src="legend.png", height=362, width=121,align="right", style="margin-left:10px")),
                               helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census.
 Darker colors indicate a higher prevalence of metabolic syndrome."),
                               p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25,
@@ -59,7 +60,7 @@ of farmers' markets and fast food by state and region."),
                               htmlOutput(outputId="farmers"),
                               htmlOutput(outputId="fastfood"),
                               helpText("*Data available only for 43 states."),
-                              column(1, br(),img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px")),
+        
                               value="geoviz"),
                      tabPanelAbout(),
                      id="tsp")
