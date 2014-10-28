@@ -48,7 +48,6 @@ shinyUI(
                tabPanel(title="Metabolic Syndrome Map",
                         h4("Metabolic Syndrome Prevalence Proportion by State"),
                         htmlOutput(outputId="geotab", inline=TRUE),
-                        h5("Please refresh the page to refresh the graph", style="color: red", class="refreshMessage"),
                         helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census.
 Darker colors indicate a higher prevalence of metabolic syndrome."),
                         p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25,

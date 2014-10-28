@@ -7,9 +7,10 @@ function(){
                  p("Insert Text Here"),
                  hr(),
                  h4("Methods"),
-                 p("Data were obtained from the Behavioral Risk Factor Surveillance System (BRFSS) for the years 2013 and 2011. 
+                 p("Data were obtained from the Behavioral Risk Factor Surveillance System (BRFSS) survey for the years 2011 and 2013. 
+                   The 2012 BRFSS survey did not have information on two of the four risk factors used to define metabolic syndrome for this visualization (cholesterol and high blood pressure). 
                     All survey analyses were done using R version 3.1.1 and the 'survey' package by Thomas Lumley. 
-                     After specifying the survey design in R, participants who were older than 18 years of age and within the 50 states were considered for the visualization."
+                     After adjusting for the survey design, participants who were older than 18 years of age and within the 50 states were considered for the visualization."
                    ),
                  value="about"
                  )
