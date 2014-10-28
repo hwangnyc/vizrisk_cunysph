@@ -45,11 +45,17 @@ This interactive tool helps you visualize the distribution of metabolic syndrome
                                   selected = c("NH White", "NH Black", "NH Asian", "NH NA/AN", "Hispanic", "Other")),
                helpText("*NH - Non-Hispanic")
              )),
-      column(6,
+      column(9,
              tabsetPanel(
                tabPanel(title="Metabolic Syndrome Map",
                         h4("Metabolic Syndrome Prevalence Proportion by State"),
                         htmlOutput(outputId="geotab", inline=TRUE),
+
+                          h3("State Viewer"),
+                          selectInput("state", label="Select a state to learn more about the distribution of metabolic syndrome by age, sex, and racial/ethnic group.",
+                                      choices= unique(metsyn$SNAME)),
+                          plotOutput(outputId="stateview"),
+                        
                         helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census.",
                                  tags$sup("5"),
 " Darker colors indicate a higher prevalence of metabolic syndrome."),
@@ -71,15 +77,8 @@ of farmers' markets and fast food by state and region."),
       ),
       column(1, br(), br(), br(), br(), br(), br(), br(), br(), img(src="colscale2.png", class="legend",
                                                   height=362, width=121,
-                                                  align="left", style="margin-left:10px; float: right")),
-      column(3, br(),
-             wellPanel(
-               h3("State Viewer"),
-               selectInput("state", label="Select a state to learn more about the distribution of metabolic syndrome by age, sex, and racial/ethnic group.",
-                           choices= unique(metsyn$SNAME)),
-               plotOutput(outputId="stateview")
-             )
-      )
+                                                  align="left", style="margin-left:10px; float: right"))
+      
    ) #fluidRow
   ) #fluidPage
 ) #shinyUI

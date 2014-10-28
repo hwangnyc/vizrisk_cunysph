@@ -97,15 +97,15 @@ shinyServer(
     output$stateview <- renderPlot({
       
       a <- ggplot(side_tab(), aes(x=AGEG, y=Prop, fill=IMPRACE)) + geom_bar(stat="Identity") + 
-        scale_fill_brewer(type="qual", palette="Accent", guide=guide_legend(nrow=3, title=NULL))
-      k <- a + ylab("Prevalence Proportion") + labs(fill="Racial/Ethnic \n Group") + 
+        scale_fill_brewer(type="qual", palette="Accent", guide=guide_legend(nrow=1, title=NULL))
+      k <- a + ylab("Prevalence Proportion") + xlab("Age Group") + labs(fill="Racial/Ethnic \n Group") + 
         theme(axis.title.x = element_blank(),legend.position="bottom", text=element_text(size=11, family="sans"))
               
       b <- ggplot(side_tab2(), aes(x=AGEG, y=Prop, fill=SEX)) + geom_bar(stat="identity") + 
         scale_fill_manual(values=c("#B3CDE3","#FBB4AE"), guide=guide_legend(title=NULL))
       j <- b + ylab("Prevalence Proportion") + xlab("Age Group") + labs(fill="Gender") + 
         theme(legend.position="bottom", text=element_text(size=11,family="sans"))
-      grid.arrange(k,j, ncol=1)
+      grid.arrange(k,j, ncol=2)
       
     })
   }) #shinysever
