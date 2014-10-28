@@ -47,7 +47,7 @@ This interactive tool helps you visualize the distribution of metabolic syndrome
              )),
       column(6,
              tabsetPanel(
-               tabPanel(title="Metabolic Syndrome",
+               tabPanel(title="MetSafe",
                         h4("Metabolic Syndrome Prevalence Proportion by State"),
                         htmlOutput(outputId="geotab", inline=TRUE),
                         helpText(paste("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census.",

@@ -48,7 +48,7 @@ shinyServer(
                                           chartArea="{left:35,top:35,width:'75%',height:'80%'}",
                                           title="Farmers' Markets Per Capita*", 
                                           titleTextStyle="{fontSize:18}",
-                                          vAxis ="{title:'Markets Per 100,000 State Residents', 
+                                          vAxis ="{title:'Markets per 100,000 population', 
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}",
                                           hAxis="{title:'Proportion of State Residents with Met. Synd.',
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}"   )))
@@ -68,7 +68,7 @@ shinyServer(
                                           chartArea="{left:35,top:35,width:'75%',height:'80%'}",
                                           title="Fast Food Per Capita*",
                                           titleTextStyle="{fontSize:18}",
-                                          vAxis ="{title:'Fast Food Restaurants per 100,000 State Residents', 
+                                          vAxis ="{title:'Fast Food Restaurants per 100,000 population', 
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}",
                                           hAxis="{title:'Proportion of State Residents with Met. Synd.',
                                                                 viewWindowMode:'explicit', viewWindow:{min:0}}"   )))

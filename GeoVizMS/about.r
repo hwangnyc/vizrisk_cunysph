@@ -1,10 +1,10 @@
 function(){
         tabPanel("About",
                  HTML('<div style="float: right; margin: 5px 5px 5px 10px;"> 
-                     <iframe width="560" height="315" src="//www.youtube.com/embed/uHYcDQDbMY8" frameborder="0" allowfullscreen></iframe> 
+                     <iframe width="560" height="315" src="//www.youtube.com/embed/3GU2snRJhfE" frameborder="0" allowfullscreen></iframe> 
                       </div>'),
                  h4("About Us"),
-                 p("This a risk visualization web application developed using the 'shiny' package in R version 3.1.1. It was proudly developed by Dr. Levi Waldron, Jasmine Abdelnabi, Marcel Ramos, Finn Schubert, Henry Wang, Cody Boppert, Dr. Katarzyna Wyka, and Dr. Ashish Joshi."),
+                 p("This a risk visualization web application developed using the 'shiny' package in R version 3.1.1. It was proudly developed by Dr. Levi Waldron, Jasmine Abdelnabi, Marcel Ramos, Finn Schubert, Henry Wang, Cody Boppert, Kezhen Fei, Dr. Katarzyna Wyka, and Dr. Ashish Joshi."),
                  hr(),
                  h4("Methods"),
                  p("Data were obtained from the Behavioral Risk Factor Surveillance System (BRFSS) survey for the years 2011 and 2013. 
