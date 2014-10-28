@@ -69,7 +69,7 @@ of farmers' markets and fast food by state and region."),
                tabPanelAbout(),
                id="tsp")
       ),
-      column(1, br(), br(), br(), br(), br(), br(), br(), br(), img(src="colscale2.png", 
+      column(1, br(), br(), br(), br(), br(), br(), br(), br(), img(src="colscale2.png", class="legend",
                                                   height=362, width=121,
                                                   align="left", style="margin-left:10px; float: right")),
       column(3, br(),
