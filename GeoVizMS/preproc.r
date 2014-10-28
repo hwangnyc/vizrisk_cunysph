@@ -2,6 +2,7 @@
 require(data.table)
 suppressPackageStartupMessages(require(googleVis))
 require(reshape2)
+require(ggplot2)
 load("data/metsyn1113.rda")
 load("data/fipscd.rda") 
 
