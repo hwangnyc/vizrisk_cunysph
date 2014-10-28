@@ -49,7 +49,7 @@ shinyUI(
              tabsetPanel(
                tabPanel(title="MetSafe",
 
-                        h4("Metabolic Syndrome Prevalence Proportion by State"),
+                        h3("Metabolic Syndrome Prevalence Proportion by State"),
                         htmlOutput(outputId="geotab", inline=TRUE),
                           h3("State Viewer"),
                           selectInput("state", label="Select a state to learn more about the distribution of metabolic syndrome by age, sex, and racial/ethnic group.",
@@ -61,7 +61,7 @@ shinyUI(
                         p("For this visualization, metabolic syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25,
                         having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
                         hr(),
-                        h4(HTML(paste("Contributing Factors: Availability of Health Food and Fast Food",tags$sup("3,4"), sep=" "))),
+                        h4(HTML(paste("Contributing Factors: Availability of Farmers' Markets and Fast Food Restaurants",tags$sup("3,4"), sep=" "))),
                         p("While diet is related to metabolic syndrome and is often considered an individual choice, the food environment
                         in which an individual lives can have an impact on that person's dietary choices and overall health.
                         The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
