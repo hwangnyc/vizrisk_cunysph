@@ -7,7 +7,10 @@ function(){
                  p("Insert Text Here"),
                  hr(),
                  h4("Methods"),
-                 p("Insert Methods Here"),
+                 p("Data were obtained from the Behavioral Risk Factor Surveillance System (BRFSS) for the years 2013 and 2011. 
+                    All survey analyses were done using R version 3.1.1 and the 'survey' package by Thomas Lumley. 
+                     After specifying the survey design in R, participants who were older than 18 years of age and within the 50 states were considered for the visualization."
+                   ),
                  value="about"
                  )
 }

@@ -22,8 +22,8 @@ shinyUI(
              wellPanel(
                h3("Data Selection"),
                radioButtons("year", label= HTML(paste("Choose a BRFSS",tags$sup("1,2"), "Year:", sep=" ")), 
-                            choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011), 
-                            inline=TRUE), 
+                            choices= list("BRFSS 2013" = 2013, "BRFSS 2011" = 2011),
+               ), 
                helpText(h6("Visualize metabolic syndrome by:")),
                
                checkboxGroupInput("sex", 
@@ -43,18 +43,11 @@ shinyUI(
              )),
       column(6,
              tabsetPanel(
-<<<<<<< HEAD
-                     tabPanel(title="Metabolic Syndrome Map",
-                              h4("Metabolic Syndrome Prevalence Proportion by State"),
-                              div(style={'display:inline-block'}, htmlOutput(outputId="geotab", inline=TRUE)),
-                              div(style={'display:inline-block'}, img(src="legend.png", height=362, width=121,align="right", style="margin-left:10px")),
-                              helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census.
-=======
                tabPanel(title="Metabolic Syndrome Map",
                         h4("Metabolic Syndrome Prevalence Proportion by State"),
                         htmlOutput(outputId="geotab", inline=TRUE),
+                        h5("Please refresh the page to refresh the graph", style="color: red", class="refreshMessage"),
                         helpText("Data are presented in percentages, age-adjusted to the nationwide age distribution from the 2010 Census.
->>>>>>> FETCH_HEAD
 Darker colors indicate a higher prevalence of metabolic syndrome."),
                         p("Metabolic Syndrome was defined as having 3 or more of the following risk factors: a Body Mass Index (BMI) greater than 25,
 having been told by a primary care provider about the presence of high cholesterol, diabetes, or high blood pressure/hypertension."),
@@ -63,16 +56,6 @@ having been told by a primary care provider about the presence of high cholester
                         p("Metabolic syndrome may be associated with certain dietary and lifestyle choices.
 The bubbleplots below illustrate the relationship between the prevalence of metabolic syndrome and availability
 of farmers' markets and fast food by state and region."),
-<<<<<<< HEAD
-                              br(),
-                              htmlOutput(outputId="farmers"),
-                              htmlOutput(outputId="fastfood"),
-                              helpText("*Data available only for 43 states."),
-        
-                              value="geoviz"),
-                     tabPanelAbout(),
-                     id="tsp")
-=======
                         br(),
                         htmlOutput(outputId="farmers"),
                         htmlOutput(outputId="fastfood"),
@@ -80,7 +63,6 @@ of farmers' markets and fast food by state and region."),
                         value="geoviz"),
                tabPanelAbout(),
                id="tsp")
->>>>>>> FETCH_HEAD
       ),
       column(1, br(), br(), br(), br(), br(), img(src="legend.png", height=362, width=121,align="left", style="margin-left:10px; float: right")),
       column(3, br(),
