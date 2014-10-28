@@ -5,9 +5,10 @@
  * */
 
 window.onload = function() {
-   window.onresize = function(event) {
+   $( window ).resize( function() {
       location.reload();
-   };
+      window.location.href = window.location.href;
+   });
 
    var geoChart = document.getElementById("geotab").children;
    console.log(geoChart);
