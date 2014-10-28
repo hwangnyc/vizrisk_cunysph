@@ -11,6 +11,7 @@ tabPanelAbout <- source("about.r")$value
 
 shinyUI(
   fluidPage(
+    includeScript("./www/cunysph.js"),
     fluidRow(
       column(8, titlePanel("Metabolic Syndrome: Where Does Your State Stand?")),
       column(4, img(src="cunylogo.png", align="right", height=72, style="margin-left:10px"),
